@@ -1,4 +1,4 @@
-import { EditForm } from "../lib";
+import { EditForm, Textbox } from "../lib";
 import { Page } from "../lib";
 import React from "react";
 
@@ -11,6 +11,7 @@ export class App {
         CanRead: true,
       },
     ];
+    app.Meta.ParentElement = document.getElementById('container');
     app.Meta.Layout = () => (
       <>
         <div className="wrapper">
@@ -23,7 +24,9 @@ export class App {
     );
     app.Meta.Components = [
       {
-        ComponentType: "Input",
+        ComponentType: (...args) => {
+          new Textbox(...args);
+        },
         FieldName: "Test",
         Id: "1",
       },
